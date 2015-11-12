@@ -1,0 +1,214 @@
+
+/*
+ * Kate++ <Brackets> Theme
+ */
+
+
+/* Define some variables used in multiple places */
+@background: #fff;
+@foreground: #000;
+
+@string-color		: #e0181a;	/*  as the name suggests  */
+@header-color		: #A11700;	/*  Used to the <!Doctype or <?xml type of text  */
+@attribute-color	: #008000;	/*  used for the HTML attribute  */
+@comment-color		: #a0a0a0;	/*  for the comments  */
+@error-color		: #dc322f;	/*  the error color */
+@property-name-color	: #000;		/*  the css property color */
+@tag-color		: #158a18;	/*  the tag selector color  */
+@search-matches-color	: #ffff00;	/*  the bg color of text which matches the search string  */
+@selection-color	: #7DC1E8;	/*  the bg color of text which is teh current search match  */
+@line-nos-color		: #a0a0a0;	/*  the color of the line nos text  */
+@selection-non-focus	: #e0e0e0;	/*  text bg color of selection when app not in focus  */
+@active-line-bg		: #f0f0f0;	/*  bg color of active line  */
+@folder-triangle-color	: #d0d0d0;	/*  color of the code folding triangle  */
+@folder-triangle-hover	: #c0c0c0;	/*  color of the code folding triangle when hovered  */
+@folder-code-bg		: #b0b0b0;	/*  bg of the folded code  */
+@selector-color		: #075996;	/*  text color for the keywords  */
+@number-color		: #916E14;	/*  text color for numbers  */
+@selected-text-color	: #fff;		/*  text color when its selected  */
+
+
+
+
+
+
+/* Code Styling */
+
+.CodeMirror, .CodeMirror-scroll {
+    background-color: @background;
+    color: @foreground;
+}
+
+.CodeMirror-focused .CodeMirror-activeline-background {
+    background: @active-line-bg;
+}
+
+.show-line-padding .CodeMirror-focused .CodeMirror-activeline-background {
+    box-shadow: inset 15px 0 0 0 #d0d0d0;
+}
+
+.CodeMirror-focused .CodeMirror-activeline {
+    .CodeMirror-gutter-elt {
+        background: rgba(0, 0, 0, 0.2);
+        color: #000;
+    }
+    .inline-widget .CodeMirror-gutter-elt {
+        color: @line-nos-color;    
+    }
+}
+
+.cm-string-2, .cm-string, .cm-hr {color: @string-color;}
+.cm-atom {color: @selector-color}
+.cm-number {color: @number-color}
+.cm-attribute, .cm-plus {color: @attribute-color;}
+.cm-def, .cm-property {color: @property-name-color; font-weight:bold}
+.cm-variable, .cm-variable-2, .cm-variable-3, .cm-operator, .cm-bracket {color: @foreground;}
+.cm-comment {color: @comment-color; font-style:italic}
+.cm-error, .cm-minus {color: @error-color;}
+.cm-header {color: @header-color;}
+.cm-link {color: @property-name-color; text-decoration: none; font-weight:bold}
+.cm-rangeinfo {color: @tag-color;}
+.cm-qualifier, .cm-builtin, .cm-keyword, .cm-tag, .cm-quote {color: @property-name-color; font-weight:bold}
+.cm-meta {color: @header-color; font-weight: bold}
+
+
+/*--------------------------------------------*/
+/*	   CSS or Stylus Specific	      */
+/*--------------------------------------------*/
+
+.cm-m-css.cm-tag,
+.cm-m-css.cm-qualifier,
+.cm-m-css.cm-builtin,
+.cm-m-css.cm-def, 
+.cm-m-css.cm-variable,
+.cm-m-stylus.cm-tag,
+.cm-m-stylus.cm-qualifier, 
+.cm-m-stylus.cm-builtin,
+.cm-m-stylus.cm-def, 
+.cm-m-stylus.cm-variable,
+{color: @selector-color; font-weight:normal}
+
+
+/*-----------------------------------------*/
+/*	   Javascript Specific             */
+/*-----------------------------------------*/
+.cm-m-javascript.cm-property {color: @selector-color; font-weight:normal}
+
+
+
+/* Extra CSS */
+
+.CodeMirror-searching {
+    background-color: @search-matches-color;
+    &.searching-current-match {
+        background-color: @selection-color;
+    }
+}
+
+
+
+
+
+.CodeMirror-cursor {
+    border-left: 1px solid @foreground !important;
+}
+
+.CodeMirror-gutters {
+    background-color: @background;
+    border-right: none;
+}
+
+.CodeMirror-linenumber {
+    color: @line-nos-color;
+}
+
+.CodeMirror .CodeMirror-selected {
+    background: @selection-non-focus;
+}
+.CodeMirror-focused .CodeMirror-selected {
+    background: @selection-color;
+}
+
+.CodeMirror-matchingbracket, .CodeMirror-matchingtag {
+    /* Ensure visibility against gray inline editor background */
+    background-color: rgba(255, 255, 0, 0.5);
+    color: @foreground !important;
+}
+
+.CodeMirror-overwrite .CodeMirror-cursor {
+    border-left: none !important;
+    border-bottom: 1px solid @foreground;
+}
+
+/*
+    CodeMirror's use of descendant selectors for certain styling causes problems when editors are
+    nested because, for items in the inner editor, the left-hand clause in the selector will now
+    match either the actual containing CodeMirror instance *OR* the outer "host" CodeMirror instance.
+
+    TODO (issue #324): We'll still have problems if editors can be nested more than one level deep,
+    or if any other descendant-selector-driven CM styles can differ between inner & outer editors
+    (potential problem areas include line wrap and coloring theme: basically, anything in codemirror.css
+    that uses a descandant selector where the CSS class name to the left of the space is something
+    other than a vanilla .CodeMirror)
+ */
+.CodeMirror {
+    .CodeMirror {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-gutters {
+        background: transparent;
+        border-right: none;
+    }
+
+    .CodeMirror .CodeMirror-activeline-background {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-activeline .CodeMirror-gutter-elt {
+        background: transparent;
+        color: @line-nos-color;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline-background {
+        background: @active-line-bg;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline {
+        .CodeMirror-gutter-elt {
+            background: rgba(0, 0, 0, 0.2);
+            color: #000;
+        }
+    }
+}
+
+.CodeMirror-foldgutter-open:after {
+    color: @folder-triangle-color;
+}
+.CodeMirror-foldgutter-folded:after {
+    color: @folder-triangle-color;
+}
+
+.CodeMirror.over-gutter, .CodeMirror-activeline {
+    .CodeMirror-foldgutter-open:after {
+        color: @folder-triangle-hover;
+    }
+}
+
+.CodeMirror-foldmarker {
+    border-color: @comment-color;
+    color: @foreground;
+    background-color: @folder-code-bg;
+}
+
+/* Non-editor styling */
+
+.image-view,
+.not-editor {
+    background-color: @background;
+}
+
+.view-pane .image-view {
+    color: @foreground;
+}
+

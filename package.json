@@ -1,0 +1,15 @@
+{
+	"name"			: "shally.kate.theme",
+	"title"			: "Kate ++",
+	"description"	: "This is emulating color themes seen in Ubuntu Gedit, Kate Color theme",
+	"version"		: "0.1.0",
+	"author"		: " SS Virk <virkster@gmail.com>",
+	"license"		: "MIT",
+	"theme"			:
+   	{
+		"file"			: "kate.less",
+		"dark"			: false,
+		"addModeClass"	: true
+	},
+	"keywords"		: ["theme", "kate", "gedit", "light"]
+}
